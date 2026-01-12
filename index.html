@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>الغدير نقل و تخليص | العملاء</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/clients.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <div class="logo">غ</div>
+      <div>
+        <h1>الغدير نقل و تخليص</h1>
+        <p>إدارة العملاء + فواتير متعددة لكل عميل</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="btn ghost" id="btnBackup">تنزيل نسخة احتياط</button>
+      <button class="btn ghost" id="btnRestore">استيراد نسخة</button>
+      <a class="btn primary" href="reports.html">التقارير</a>
+    </nav>
+  </header>
+
+  <main class="wrap grid">
+    <section class="card">
+      <div class="row between">
+        <div>
+          <h2>العملاء</h2>
+          <div class="muted small">اضغط “معلومات العميل” لفتح فواتيره في invoice.html</div>
+        </div>
+        <div class="row" style="gap:10px">
+          <div class="pill" id="clientsCount">العملاء: 0</div>
+          <input id="q" class="input" placeholder="بحث بالاسم/الهاتف/المكان...">
+        </div>
+      </div>
+
+      <div id="empty" class="empty hidden">لا يوجد عملاء. أضف عميل من النموذج.</div>
+
+      <div class="tableWrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>الاسم</th>
+              <th>الهاتف</th>
+              <th>المكان</th>
+              <th>عدد الفواتير</th>
+              <th>الرصيد الكلي</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="clientsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row between">
+        <div>
+          <h2>إضافة عميل</h2>
+</div>
+        <button class="btn ghost" id="btnClear">مسح</button>
+      </div>
+
+      <div class="form">
+        <label class="label">اسم العميل</label>
+        <input id="name" class="input" placeholder="مثال: أحمد علي">
+
+        <label class="label">رقم الهاتف</label>
+        <input id="phone" class="input" placeholder="مثال: 0770xxxxxxx">
+
+        <label class="label">المكان</label>
+        <input id="location" class="input" placeholder="مثال: بغداد - الكرادة">
+
+        <div class="row" style="gap:10px">
+          <div style="flex:1">
+            <label class="label">العملة</label>
+            <select id="currency" class="input">
+              <option value="$">$</option>
+              <option value="IQD">IQD</option>
+              <option value="USD">USD</option>
+            </select>
+          </div>
+          <div class="row" style="align-items:flex-end; gap:10px">
+            <button class="btn ok" id="btnSave">إضافة</button>
+</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+  <!-- Edit Slide (Top Sheet) -->
+  <div id="editOverlay" class="overlay hidden" aria-hidden="true">
+    <div id="editSheet" class="sheet" role="dialog" aria-modal="true" aria-label="تعديل العميل">
+      <div class="sheetHeader">
+        <div>
+          <div class="sheetTitle">تعديل العميل</div>
+          <div class="sheetSub muted small" id="editMeta">—</div>
+        </div>
+        <button class="btn ghost" id="btnEditClose">إغلاق</button>
+      </div>
+
+      <div class="sheetBody">
+        <label class="label">اسم العميل</label>
+        <input id="editName" class="input" placeholder="اسم العميل">
+
+        <label class="label">رقم الهاتف</label>
+        <input id="editPhone" class="input" placeholder="رقم الهاتف">
+
+        <label class="label">المكان</label>
+        <input id="editLocation" class="input" placeholder="المكان">
+
+        <label class="label">العملة</label>
+        <select id="editCurrency" class="input">
+          <option value="$">$</option>
+          <option value="IQD">IQD</option>
+          <option value="USD">USD</option>
+        </select>
+
+        <div class="row sheetActions">
+          <button class="btn ok" id="btnEditSave">حفظ التعديل</button>
+          <button class="btn danger" id="btnEditDelete">حذف العميل</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/clients-page.js"></script>
+</body>
+</html>
