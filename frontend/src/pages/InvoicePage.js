@@ -171,42 +171,14 @@ function InvoicePage() {
     return total;
   };
 
-  const exportToPDF = () => {
+  const exportToPDF = async () => {
     if (!statement || !activeInvoice || !client) return;
 
-    const t1Total = calculateTotal(statement.t1);
-    const t2Total = calculateTotal(statement.t2);
-    const balance = t1Total - t2Total;
-
-    const tables = [
-      {
-        title: 'Operations - العمليات',
-        head: [statement.t1.headerTitles],
-        body: statement.t1.rows,
-        foot: [['', '', '', '', 'Total - إجمالي العمليات', `${t1Total}${client.currency}`]]
-      },
-      {
-        title: 'Payments - القبوضات',
-        head: [statement.t2.headerTitles],
-        body: statement.t2.rows,
-        foot: [['', '', '', '', 'Total - مجموع القبوضات', `${t2Total}${client.currency}`]]
-      },
-      {
-        title: 'Final Account - الحساب النهائي',
-        head: [['Item - البند', 'Value - القيمة']],
-        body: [
-          [`Total Operations - إجمالي العمليات`, `${t1Total}${client.currency}`],
-          [`Total Payments - مجموع القبوضات`, `${t2Total}${client.currency}`],
-          [`Final Balance - الرصيد النهائي`, `${balance}${client.currency}`]
-        ]
-      }
-    ];
-
-    generateArabicPDF(
+    await generatePDFFromElement(
+      'pdf-content',
+      `فاتورة_${client.name}_${activeInvoice.name}_${invoiceDate}.pdf`,
       `${client.name} - ${activeInvoice.name}`,
-      `Date - التاريخ: ${invoiceDate}`,
-      tables,
-      `invoice_${client.name}_${activeInvoice.name}_${invoiceDate}.pdf`
+      `التاريخ: ${invoiceDate}`
     );
   };
 
