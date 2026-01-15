@@ -72,7 +72,7 @@ class Statement(BaseModel):
 # API Routes
 @app.get("/")
 async def root():
-    return {"message": "الغدير نقل و تخليص API", "status": "running"}
+    return {"message": "الغدير نقليات و تخليص كمركي API", "status": "running"}
 
 # Authentication Endpoints
 USERS = {
