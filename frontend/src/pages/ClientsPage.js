@@ -141,10 +141,14 @@ function ClientsPage() {
       <header className="top" style={{ background: 'var(--color-card-bg)' }}>
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="brand flex items-center gap-4">
-            <div className="logo">غ</div>
+            <img 
+              src="/logo.jpeg" 
+              alt="الغدير" 
+              className="h-16 w-auto rounded-xl shadow-lg"
+            />
             <div>
               <h1 className="text-2xl font-bold" style={{ color: 'var(--color-text)' }}>
-                الغدير نقل و تخليص
+                الغدير نقليات و تخليص كمركي
               </h1>
               <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
                 إدارة العملاء + فواتير متعددة لكل عميل
