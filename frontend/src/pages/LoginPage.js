@@ -192,7 +192,7 @@ function LoginPage() {
         </div>
 
         <p className="text-center text-white mt-8 opacity-90 text-sm drop-shadow">
-          © 2026 الغدير نقل و تخليص. جميع الحقوق محفوظة.
+          © 2026 الغدير نقليات و تخليص كمركي. جميع الحقوق محفوظة.
         </p>
       </div>
 
