@@ -1,71 +1,42 @@
-// Helper function to generate PDF with Arabic support
+// Helper function to generate PDF with full Arabic support using html2canvas
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import html2canvas from 'html2canvas';
 
-export const generateArabicPDF = (title, subtitle, tables, filename) => {
-  const doc = new jsPDF('p', 'mm', 'a4');
-  
-  // Configure for RTL
-  doc.setR2L(true);
-  
-  // Add Title
-  doc.setFontSize(20);
-  doc.setFont('helvetica', 'bold');
-  const pageWidth = doc.internal.pageSize.width;
-  doc.text(title, pageWidth / 2, 20, { align: 'center' });
-  
-  if (subtitle) {
-    doc.setFontSize(12);
-    doc.setFont('helvetica', 'normal');
-    doc.text(subtitle, pageWidth / 2, 30, { align: 'center' });
+export const generatePDFFromElement = async (elementId, filename, title, subtitle) => {
+  const element = document.getElementById(elementId);
+  if (!element) {
+    console.error('Element not found');
+    return;
   }
-  
-  let currentY = subtitle ? 40 : 30;
-  
-  // Add tables
-  tables.forEach((table, index) => {
-    if (index > 0) {
-      currentY += 10;
-    }
-    
-    if (table.title) {
-      doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
-      doc.text(table.title, pageWidth / 2, currentY, { align: 'center' });
-      currentY += 5;
-    }
-    
-    doc.autoTable({
-      startY: currentY,
-      head: table.head,
-      body: table.body,
-      foot: table.foot,
-      styles: { 
-        font: 'helvetica',
-        halign: 'center',
-        fontSize: 10,
-        cellPadding: 3
-      },
-      headStyles: { 
-        fillColor: [102, 126, 234],
-        textColor: 255,
-        fontStyle: 'bold',
-        halign: 'center'
-      },
-      footStyles: { 
-        fillColor: [240, 240, 240],
-        textColor: 0,
-        fontStyle: 'bold',
-        halign: 'center'
-      },
-      alternateRowStyles: { 
-        fillColor: [250, 250, 250] 
-      },
-      margin: { top: 10, right: 10, bottom: 10, left: 10 }
+
+  try {
+    // Show element temporarily
+    const originalDisplay = element.style.display;
+    element.style.display = 'block';
+
+    // Capture element as canvas
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      logging: false,
+      backgroundColor: '#ffffff'
     });
+
+    // Hide element again
+    element.style.display = originalDisplay;
+
+    // Create PDF
+    const imgWidth = 210; // A4 width in mm
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
     
-    currentY = doc.lastAutoTable.finalY;
-  });
-  
-  doc.save(filename);
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgData = canvas.toDataURL('image/png');
+    
+    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+    pdf.save(filename);
+    
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    alert('حدث خطأ في إنشاء ملف PDF');
+  }
 };
