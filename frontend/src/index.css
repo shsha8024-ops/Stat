@@ -1,6 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* CSS Variables for Theming */
+:root {
+  --color-primary: #667eea;
+  --color-primary-hover: #5568d3;
+  --color-secondary: #764ba2;
+  --color-background: #f5f5f5;
+  --color-card-bg: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
 
 * {
   box-sizing: border-box;
@@ -15,7 +26,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   direction: rtl;
-  background-color: #f5f5f5;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {
