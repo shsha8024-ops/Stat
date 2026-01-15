@@ -141,28 +141,50 @@ function ClientsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
       {/* Header */}
-      <header className="top bg-white shadow-sm">
+      <header className="top" style={{ background: 'var(--color-card-bg)' }}>
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="brand flex items-center gap-4">
             <div className="logo">غ</div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">الغدير نقل و تخليص</h1>
-              <p className="text-sm text-gray-600">إدارة العملاء + فواتير متعددة لكل عميل</p>
+              <h1 className="text-2xl font-bold" style={{ color: 'var(--color-text)' }}>
+                الغدير نقل و تخليص
+              </h1>
+              <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                إدارة العملاء + فواتير متعددة لكل عميل
+              </p>
             </div>
           </div>
           
-          <div className="flex gap-3">
-            <button onClick={handleBackup} className="btn btn-ghost">
-              تنزيل نسخة احتياط
-            </button>
-            <button onClick={handleRestore} className="btn btn-ghost">
-              استيراد نسخة
-            </button>
-            <Link to="/reports" className="btn btn-primary">
-              التقارير
-            </Link>
+          <div className="flex items-center gap-4">
+            <div className="text-right">
+              <div className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                {user?.name}
+              </div>
+              <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                {user?.role === 'admin' ? 'مدير' : 'موظف'}
+              </div>
+            </div>
+            
+            <div className="flex gap-3">
+              {isAdmin() && (
+                <>
+                  <button onClick={handleBackup} className="btn btn-ghost">
+                    تنزيل نسخة احتياط
+                  </button>
+                  <button onClick={handleRestore} className="btn btn-ghost">
+                    استيراد نسخة
+                  </button>
+                </>
+              )}
+              <Link to="/reports" className="btn btn-primary">
+                التقارير
+              </Link>
+              <button onClick={logout} className="btn btn-danger">
+                تسجيل خروج
+              </button>
+            </div>
           </div>
         </div>
       </header>
