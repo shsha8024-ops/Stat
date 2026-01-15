@@ -264,17 +264,18 @@ function ClientsPage() {
             )}
           </section>
 
-          {/* Add Client Form */}
-          <section className="card">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-gray-800">إضافة عميل</h2>
-              <button
-                onClick={() => setFormData({ name: '', phone: '', location: '', currency: '$' })}
-                className="btn btn-ghost text-sm"
-              >
-                مسح
-              </button>
-            </div>
+          {/* Add Client Form - Admin Only */}
+          {isAdmin() && (
+            <section className="card">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-800">إضافة عميل</h2>
+                <button
+                  onClick={() => setFormData({ name: '', phone: '', location: '', currency: '$' })}
+                  className="btn btn-ghost text-sm"
+                >
+                  مسح
+                </button>
+              </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
