@@ -155,7 +155,7 @@ async def delete_client(client_id: str):
 # Invoices Endpoints
 @app.get("/api/clients/{client_id}/invoices")
 async def get_client_invoices(client_id: str):
-    invoices = await invoices_collection.find({"clientId": client_id}).to_list(1000)
+    invoices = await invoices_collection.find({"clientId": client_id}).limit(100).to_list(100)
     for invoice in invoices:
         invoice["_id"] = str(invoice["_id"])
     return invoices
