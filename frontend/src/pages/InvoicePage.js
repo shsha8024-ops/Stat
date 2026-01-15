@@ -276,17 +276,19 @@ function InvoicePage() {
               <span className="pill">{invoices.length}</span>
             </div>
 
-            <div className="flex flex-col gap-2 mb-4">
-              <button onClick={createNewInvoice} className="btn btn-primary w-full text-sm">
-                + فاتورة
-              </button>
-              <button onClick={renameInvoice} className="btn btn-ghost w-full text-sm">
-                تغيير اسم
-              </button>
-              <button onClick={deleteInvoice} className="btn btn-danger w-full text-sm">
-                حذف
-              </button>
-            </div>
+            {isAdmin() && (
+              <div className="flex flex-col gap-2 mb-4">
+                <button onClick={createNewInvoice} className="btn btn-primary w-full text-sm">
+                  + فاتورة
+                </button>
+                <button onClick={renameInvoice} className="btn btn-ghost w-full text-sm">
+                  تغيير اسم
+                </button>
+                <button onClick={deleteInvoice} className="btn btn-danger w-full text-sm">
+                  حذف
+                </button>
+              </div>
+            )}
 
             <label className="block text-sm font-medium text-gray-700 mb-2">
               اختيار فاتورة
