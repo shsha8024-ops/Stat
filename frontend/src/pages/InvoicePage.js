@@ -5,7 +5,7 @@ import axios from 'axios';
 import TableEditor from '../components/TableEditor';
 import * as XLSX from 'xlsx';
 
-const API_URL = process.env.REACT_APP_BACKEND_URL;
+const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 function InvoicePage() {
   const { clientId } = useParams();
