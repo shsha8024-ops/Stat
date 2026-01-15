@@ -68,7 +68,7 @@ async def root():
 # Clients Endpoints
 @app.get("/api/clients")
 async def get_clients():
-    clients = await clients_collection.find().to_list(1000)
+    clients = await clients_collection.find().limit(100).to_list(100)
     for client in clients:
         client["_id"] = str(client["_id"])
     return clients
