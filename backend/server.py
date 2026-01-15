@@ -74,6 +74,47 @@ class Statement(BaseModel):
 async def root():
     return {"message": "الغدير نقل و تخليص API", "status": "running"}
 
+# Authentication Endpoints
+USERS = {
+    "star": {
+        "username": "star",
+        "password": "star1996@",
+        "role": "admin",
+        "name": "المدير"
+    },
+    "muhanad": {
+        "username": "muhanad",
+        "password": "muhanad1996",
+        "role": "employee",
+        "name": "مهند"
+    },
+    "bedrxan": {
+        "username": "bedrxan",
+        "password": "badrxan1993",
+        "role": "employee",
+        "name": "بدرخان"
+    }
+}
+
+@app.post("/api/auth/login")
+async def login(credentials: LoginRequest):
+    user = USERS.get(credentials.username)
+    
+    if not user:
+        return LoginResponse(success=False, message="اسم المستخدم غير موجود")
+    
+    if user["password"] != credentials.password:
+        return LoginResponse(success=False, message="كلمة المرور غير صحيحة")
+    
+    # Return user info without password
+    user_data = {
+        "username": user["username"],
+        "role": user["role"],
+        "name": user["name"]
+    }
+    
+    return LoginResponse(success=True, user=user_data, message="تم تسجيل الدخول بنجاح")
+
 # Clients Endpoints
 @app.get("/api/clients")
 async def get_clients():
