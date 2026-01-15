@@ -52,25 +52,41 @@ function ReportsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
       {/* Header */}
-      <header className="top bg-white shadow-sm">
+      <header className="top" style={{ background: 'var(--color-card-bg)' }}>
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="brand flex items-center gap-4">
             <div className="logo">غ</div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">التقارير</h1>
-              <p className="text-sm text-gray-600">ملخص أرصدة العملاء + فواتيرهم</p>
+              <h1 className="text-2xl font-bold" style={{ color: 'var(--color-text)' }}>التقارير</h1>
+              <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                ملخص أرصدة العملاء + فواتيرهم
+              </p>
             </div>
           </div>
           
-          <div className="flex gap-3">
-            <Link to="/" className="btn btn-ghost">
-              ← العملاء
-            </Link>
-            <button onClick={exportToExcel} className="btn btn-primary">
-              📄 Excel (الكل)
-            </button>
+          <div className="flex items-center gap-4">
+            <div className="text-right">
+              <div className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                {user?.name}
+              </div>
+              <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                {user?.role === 'admin' ? 'مدير' : 'موظف'}
+              </div>
+            </div>
+            
+            <div className="flex gap-3">
+              <Link to="/" className="btn btn-ghost">
+                ← العملاء
+              </Link>
+              <button onClick={exportToExcel} className="btn btn-primary">
+                📄 Excel (الكل)
+              </button>
+              <button onClick={logout} className="btn btn-danger">
+                تسجيل خروج
+              </button>
+            </div>
           </div>
         </div>
       </header>
