@@ -29,6 +29,15 @@ invoices_collection = db.invoices
 statements_collection = db.statements
 
 # Pydantic Models
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+class LoginResponse(BaseModel):
+    success: bool
+    user: Optional[Dict[str, Any]] = None
+    message: Optional[str] = None
+
 class Client(BaseModel):
     id: Optional[str] = Field(default_factory=lambda: f"client_{uuid.uuid4().hex[:12]}")
     name: str
