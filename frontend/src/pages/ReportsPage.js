@@ -147,6 +147,51 @@ function ReportsPage() {
           )}
         </section>
       </main>
+
+      {/* Hidden PDF Content */}
+      <div id="pdf-reports-content" style={{ display: 'none', padding: '40px', backgroundColor: '#ffffff', direction: 'rtl' }}>
+        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+          <h1 style={{ fontSize: '28px', marginBottom: '10px', color: '#667eea' }}>
+            تقارير العملاء
+          </h1>
+          <p style={{ fontSize: '16px', color: '#666' }}>
+            التاريخ: {new Date().toLocaleDateString('ar-EG')}
+          </p>
+        </div>
+
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ backgroundColor: '#667eea' }}>
+              <th style={{ padding: '12px', color: 'white', border: '1px solid #ddd', textAlign: 'center' }}>العميل</th>
+              <th style={{ padding: '12px', color: 'white', border: '1px solid #ddd', textAlign: 'center' }}>الهاتف</th>
+              <th style={{ padding: '12px', color: 'white', border: '1px solid #ddd', textAlign: 'center' }}>المكان</th>
+              <th style={{ padding: '12px', color: 'white', border: '1px solid #ddd', textAlign: 'center' }}>عدد الفواتير</th>
+              <th style={{ padding: '12px', color: 'white', border: '1px solid #ddd', textAlign: 'center' }}>الرصيد الكلي</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredReports.map((report, idx) => (
+              <tr key={report.client.id} style={{ backgroundColor: idx % 2 === 0 ? '#f9f9f9' : 'white' }}>
+                <td style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'center', fontWeight: 'bold' }}>
+                  {report.client.name}
+                </td>
+                <td style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'center' }}>
+                  {report.client.phone}
+                </td>
+                <td style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'center' }}>
+                  {report.client.location}
+                </td>
+                <td style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'center' }}>
+                  {report.invoiceCount}
+                </td>
+                <td style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'center', color: '#10b981', fontWeight: 'bold' }}>
+                  {report.balance}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
