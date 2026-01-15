@@ -53,17 +53,7 @@ function LoginPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Logo Card */}
         <div className="text-center mb-8 animate-fadeIn">
-          <div className="inline-flex items-center justify-center mb-6 transform hover:scale-105 transition-transform duration-300">
-            <img 
-              src="/logo.png" 
-              alt="الغدير" 
-              className="h-40 w-auto"
-              style={{
-                filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5))'
-              }}
-            />
-          </div>
-          <h1 className="text-4xl font-bold text-white mb-3 drop-shadow-lg">الغدير نقليات و تخليص كمركي</h1>
+          <h1 className="text-5xl font-bold text-white mb-3 drop-shadow-lg">الغدير نقليات و تخليص كمركي</h1>
           <p className="text-white text-lg opacity-90 drop-shadow">نظام إدارة العملاء والفواتير الاحترافي</p>
         </div>
 
