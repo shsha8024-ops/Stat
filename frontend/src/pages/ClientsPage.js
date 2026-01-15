@@ -243,15 +243,17 @@ function ClientsPage() {
                             >
                               معلومات العميل
                             </Link>
-                            <button
-                              onClick={() => {
-                                setEditingClient(client);
-                                setShowEditModal(true);
-                              }}
-                              className="btn btn-ghost text-sm"
-                            >
-                              تعديل
-                            </button>
+                            {isAdmin() && (
+                              <button
+                                onClick={() => {
+                                  setEditingClient(client);
+                                  setShowEditModal(true);
+                                }}
+                                className="btn btn-ghost text-sm"
+                              >
+                                تعديل
+                              </button>
+                            )}
                           </div>
                         </td>
                       </tr>
