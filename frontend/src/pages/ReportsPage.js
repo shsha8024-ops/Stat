@@ -26,16 +26,6 @@ function ReportsPage() {
   };
 
   const exportToPDF = () => {
-    const doc = new jsPDF('p', 'mm', 'a4');
-    
-    // Add title
-    doc.setFontSize(20);
-    doc.text('تقارير العملاء', 105, 20, { align: 'center' });
-    
-    doc.setFontSize(12);
-    doc.text(`التاريخ: ${new Date().toLocaleDateString('ar-EG')}`, 105, 30, { align: 'center' });
-    
-    // Prepare data
     const tableData = filteredReports.map(report => [
       report.client.name,
       report.client.phone,
@@ -44,17 +34,18 @@ function ReportsPage() {
       report.balance
     ]);
     
-    doc.autoTable({
-      startY: 40,
-      head: [['العميل', 'الهاتف', 'المكان', 'عدد الفواتير', 'الرصيد الكلي']],
-      body: tableData,
-      styles: { font: 'helvetica', halign: 'right', fontSize: 10 },
-      headStyles: { fillColor: [102, 126, 234], fontStyle: 'bold' },
-      alternateRowStyles: { fillColor: [245, 245, 245] }
-    });
+    const tables = [{
+      head: [['Client - العميل', 'Phone - الهاتف', 'Location - المكان', 'Invoices - عدد الفواتير', 'Balance - الرصيد الكلي']],
+      body: tableData
+    }];
     
-    const date = new Date().toISOString().split('T')[0];
-    doc.save(`تقارير_العملاء_${date}.pdf`);
+    const date = new Date().toLocaleDateString('en-US');
+    generateArabicPDF(
+      'Client Reports - تقارير العملاء',
+      `Date - التاريخ: ${date}`,
+      tables,
+      `reports_${date}.pdf`
+    );
   };
 
   const filteredReports = reports.filter(report => {
