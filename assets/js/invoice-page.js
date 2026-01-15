@@ -280,7 +280,7 @@ function renderInvoicesUI(){
 function buildEditors(){
   t1Editor = new TableEditor({
     tableId: 't1',
-    minCols: 3,
+    minCols: 6,
     getCurrencySymbol: currentCurrency,
     onChange: () => {
       t1Editor.updateFooterColspan('t1FootLabel');
@@ -291,7 +291,7 @@ function buildEditors(){
 
   t2Editor = new TableEditor({
     tableId: 't2',
-    minCols: 4,
+    minCols: 6,
     getCurrencySymbol: currentCurrency,
     onChange: () => {
       t2Editor.updateFooterColspan('t2FootLabel');
