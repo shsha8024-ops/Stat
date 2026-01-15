@@ -154,9 +154,10 @@ function TableEditor({
                         type="text"
                         value={cell}
                         onChange={(e) => handleCellChange(rowIndex, colIndex, e.target.value)}
+                        disabled={readOnly}
                         className={`w-full bg-transparent border-none outline-none p-1 ${
                           colIndex === row.length - 1 ? 'font-semibold text-green-700' : ''
-                        }`}
+                        } ${readOnly ? 'cursor-default' : ''}`}
                       />
                     )}
                   </td>
