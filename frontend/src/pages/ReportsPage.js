@@ -7,6 +7,7 @@ import * as XLSX from 'xlsx';
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 function ReportsPage() {
+  const { user, logout } = useAuth();
   const [reports, setReports] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
