@@ -96,8 +96,8 @@ function ReportsPage() {
               <Link to="/" className="btn btn-ghost">
                 ← العملاء
               </Link>
-              <button onClick={exportToExcel} className="btn btn-primary">
-                📄 Excel (الكل)
+              <button onClick={exportToPDF} className="btn btn-primary">
+                📄 PDF
               </button>
               <button onClick={logout} className="btn btn-danger">
                 تسجيل خروج
