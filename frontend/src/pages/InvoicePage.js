@@ -442,10 +442,25 @@ function InvoicePage() {
 
       {/* Hidden PDF Content */}
       <div id="pdf-content" style={{ display: 'none', padding: '40px', backgroundColor: '#ffffff', direction: 'rtl' }}>
-        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <h1 style={{ fontSize: '28px', marginBottom: '10px', color: '#667eea' }}>
-            {client.name} - {activeInvoice.name}
+        {/* Logo and Header */}
+        <div style={{ textAlign: 'center', marginBottom: '40px', borderBottom: '3px solid #667eea', paddingBottom: '20px' }}>
+          <img 
+            src="/logo.jpeg" 
+            alt="الغدير نقليات" 
+            style={{ 
+              height: '100px', 
+              width: 'auto',
+              marginBottom: '15px',
+              borderRadius: '12px',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+            }}
+          />
+          <h1 style={{ fontSize: '32px', marginBottom: '8px', color: '#667eea', fontWeight: 'bold' }}>
+            الغدير نقليات و تخليص كمركي
           </h1>
+          <h2 style={{ fontSize: '24px', marginBottom: '10px', color: '#333' }}>
+            {client.name} - {activeInvoice.name}
+          </h2>
           <p style={{ fontSize: '16px', color: '#666' }}>التاريخ: {invoiceDate}</p>
         </div>
 
