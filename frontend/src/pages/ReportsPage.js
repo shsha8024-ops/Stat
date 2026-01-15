@@ -26,21 +26,36 @@ function ReportsPage() {
     }
   };
 
-  const exportToExcel = () => {
-    const data = filteredReports.map(report => ({
-      'العميل': report.client.name,
-      'الهاتف': report.client.phone,
-      'المكان': report.client.location,
-      'عدد الفواتير': report.invoiceCount,
-      'الرصيد الكلي': report.balance
-    }));
-
-    const ws = XLSX.utils.json_to_sheet(data);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'التقارير');
+  const exportToPDF = () => {
+    const doc = new jsPDF('p', 'mm', 'a4');
+    
+    // Add title
+    doc.setFontSize(20);
+    doc.text('تقارير العملاء', 105, 20, { align: 'center' });
+    
+    doc.setFontSize(12);
+    doc.text(`التاريخ: ${new Date().toLocaleDateString('ar-EG')}`, 105, 30, { align: 'center' });
+    
+    // Prepare data
+    const tableData = filteredReports.map(report => [
+      report.client.name,
+      report.client.phone,
+      report.client.location,
+      report.invoiceCount.toString(),
+      report.balance
+    ]);
+    
+    doc.autoTable({
+      startY: 40,
+      head: [['العميل', 'الهاتف', 'المكان', 'عدد الفواتير', 'الرصيد الكلي']],
+      body: tableData,
+      styles: { font: 'helvetica', halign: 'right', fontSize: 10 },
+      headStyles: { fillColor: [102, 126, 234], fontStyle: 'bold' },
+      alternateRowStyles: { fillColor: [245, 245, 245] }
+    });
     
     const date = new Date().toISOString().split('T')[0];
-    XLSX.writeFile(wb, `تقارير_العملاء_${date}.xlsx`);
+    doc.save(`تقارير_العملاء_${date}.pdf`);
   };
 
   const filteredReports = reports.filter(report => {
