@@ -18,12 +18,14 @@ function InvoicePage() {
   useEffect(() => {
     loadClient();
     loadInvoices();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clientId]);
 
   useEffect(() => {
     if (invoices.length > 0 && !activeInvoice) {
       setActiveInvoice(invoices[0]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [invoices]);
 
   useEffect(() => {
