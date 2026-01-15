@@ -445,9 +445,18 @@ function InvoicePage() {
 
       {/* Hidden PDF Content */}
       <div id="pdf-content" style={{ display: 'none', padding: '40px', backgroundColor: '#ffffff', direction: 'rtl' }}>
-        {/* Header */}
+        {/* Header with Logo */}
         <div style={{ textAlign: 'center', marginBottom: '40px', borderBottom: '3px solid #667eea', paddingBottom: '20px' }}>
-          <h1 style={{ fontSize: '36px', marginBottom: '10px', color: '#667eea', fontWeight: 'bold' }}>
+          <img 
+            src="/logo.png" 
+            alt="الغدير" 
+            style={{ 
+              height: '120px',
+              width: 'auto',
+              marginBottom: '15px'
+            }}
+          />
+          <h1 style={{ fontSize: '32px', marginBottom: '10px', color: '#667eea', fontWeight: 'bold' }}>
             الغدير نقليات و تخليص كمركي
           </h1>
           <h2 style={{ fontSize: '24px', marginBottom: '10px', color: '#333' }}>
