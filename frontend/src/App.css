@@ -155,7 +155,7 @@ input:focus, select:focus, textarea:focus {
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  justify-center;
+  justify-content: center;
   z-index: 1000;
 }
 
